@@ -12,14 +12,14 @@ export default class Cpf {
 
     private validate(cpf: string) {
         if (!cpf) {
-            return false
+            return false;
         };
         cpf = this.cleanCpf(cpf);
         if (!this.isValidLength(cpf)) {
-            return false
+            return false;
         };
         if (!this.hasAllDigitsEqual(cpf)) {
-            return false
+            return false;
         };
 
         const digit1 = this.calculateDigit(cpf, 10);
