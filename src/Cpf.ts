@@ -2,7 +2,7 @@ export default class Cpf {
 
     readonly value: string;
 
-    constructor(readonly value: string) {
+    constructor(value: string) {
         if (!this.validate(value)) {
             throw new Error("Cpf inválido");
 
