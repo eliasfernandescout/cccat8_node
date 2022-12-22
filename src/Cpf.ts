@@ -1,30 +1,23 @@
 export default class Cpf {
-    private _value: string;
 
-    constructor(value: string) {
+    readonly value: string;
+
+    constructor(readonly value: string) {
         if (!this.validate(value)) {
-            throw new Error("CPF Invalido")
-        } else {
-            this._value = value;
-        }
+            throw new Error("Cpf inválido");
 
+        } else {
+            this.value = value;
+        }
     }
 
     private validate(cpf: string) {
-        if (!cpf) {
-            return false;
-        };
+        if (!cpf) return false;
         cpf = this.cleanCpf(cpf);
-        if (!this.isValidLength(cpf)) {
-            return false;
-        };
-        if (!this.hasAllDigitsEqual(cpf)) {
-            return false;
-        };
-
+        if (!this.isValidLength(cpf)) return false;
+        if (this.hasAllDigitsEqual(cpf)) return false;
         const digit1 = this.calculateDigit(cpf, 10);
         const digit2 = this.calculateDigit(cpf, 11);
-
         const checkDigit = this.extractDigit(cpf);
         const calculatedDigit = `${digit1}${digit2}`;
         return checkDigit == calculatedDigit;
@@ -36,7 +29,6 @@ export default class Cpf {
 
     private isValidLength(cpf: string) {
         return cpf.length === 11;
-
     }
 
     private hasAllDigitsEqual(cpf: string) {

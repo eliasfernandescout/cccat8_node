@@ -1,6 +1,9 @@
+import Cpf from "./Cpf";
+
 export default class Order {
-    private _cpf
+    cpf: Cpf;
     constructor(cpf: string) {
-        this._cpf = cpf
+        this.cpf = new Cpf(cpf)
+
     }
 }
