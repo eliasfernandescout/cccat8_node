@@ -8,20 +8,20 @@ export default class Order {
 	orderItems: OrderItem[];
 	coupon?: Coupon;
 
-	constructor (cpf: string) {
+	constructor(cpf: string) {
 		this.cpf = new Cpf(cpf);
 		this.orderItems = [];
 	}
-	
-	addItem (item: Item, quantity: number) {
+
+	addItem(item: Item, quantity: number) {
 		this.orderItems.push(new OrderItem(item.idItem, item.price, quantity));
 	}
 
-	addCoupon (coupon: Coupon) {
+	addCoupon(coupon: Coupon) {
 		this.coupon = coupon;
 	}
 
-	getTotal () {
+	getTotal() {
 		let total = this.orderItems.reduce((total, orderItem) => {
 			total += orderItem.getTotal();
 			return total;
