@@ -16,3 +16,6 @@ CLEAN ARCHTECTURE:
 
 O objetivo da Clean Archtecture e um modelo que tem como objetivo o desacoplamento entre
 as regras de negocio, ou dominio, da aplicacao e os recursos externos, como frameworks e banco de dados;
+
+
+STOP AULA 3 2:23
