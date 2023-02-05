@@ -10,3 +10,9 @@ para construir e manter um determinar sistema;
 
 
 O que for definito na arquitetura impacta o design, 
+
+
+CLEAN ARCHTECTURE:
+
+O objetivo da Clean Archtecture e um modelo que tem como objetivo o desacoplamento entre
+as regras de negocio, ou dominio, da aplicacao e os recursos externos, como frameworks e banco de dados;
