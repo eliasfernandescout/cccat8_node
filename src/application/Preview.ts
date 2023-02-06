@@ -1,5 +1,5 @@
-import ItemRepository from "./ItemRepository"
-import Order from "./Order"
+import ItemRepository from "../ItemRepository"
+import Order from "../domain/Order"
 
 export default class Preview {
     constructor(readonly itemRepository: ItemRepository){
