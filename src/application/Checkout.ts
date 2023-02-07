@@ -7,7 +7,6 @@ export default class Checkout {
     constructor(readonly itemRepository: ItemRepository, readonly orderRepository: OrderRepository){
 
     }
-
     async execute(input: Input): Promise<void>{
         const order = new Order(input.cpf)
         for(const orderItem of input.orderItems){
