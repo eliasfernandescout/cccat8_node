@@ -6,6 +6,7 @@ import Item from "./domain/Item";
 import ItemRepositoryMemory from "./ItemRepositoryMemory";
 import OrderRepositoryMemory from "./OrderRepositoryMemory";
 const app = express();
+app.listen(express.json());
 
 const itemRepository = new ItemRepositoryMemory();
 itemRepository.save(new Item(1, "Guitarra", 1000));
