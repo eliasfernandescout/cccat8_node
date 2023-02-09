@@ -1,40 +1,28 @@
-import express from "express";
 import Checkout from "../../application/Checkout";
 import GetOrderByCpf from "../../application/GetOrdersByCpf";
 import Preview from "../../application/Preview";
-import Item from "../../domain/entity/Item";
-import ItemRepositoryMemory from "../repository/memory/ItemRepositoryMemory";
-import OrderRepositoryMemory from "../repository/memory/OrderRepositoryMemory";
-const app = express();
-app.listen(express.json());
+import HttpsServer from "../http/HttpsServer";
 
-const itemRepository = new ItemRepositoryMemory();
-itemRepository.save(new Item(1, "Guitarra", 1000));
-itemRepository.save(new Item(1, "Amplificador", 5000));
-itemRepository.save(new Item(1, "Cabo", 30));
+export default class OrderController {
+    constructor(
+        readonly httpServer: HttpsServer,
+        readonly preview: Preview,
+        readonly checkout: Checkout,
+        readonly getOrderByCpf: GetOrderByCpf
 
-const orderRepository = new OrderRepositoryMemory();
-
-
-app.post("/preview", async function(request, response){
-    const preview = new Preview(itemRepository);
-    const total = await preview.execute(request.body);
-    response.json({total});
-
-});
-
-app.post("/checkout", async function(request, response){
-    const checkout = new Checkout(itemRepository, orderRepository);
-    await checkout.execute(request.body);
-    response.end()
-
-});
-
-app.get("/orders/:cpf", async function(request, response){
-    const getOrderByCpf = new GetOrderByCpf(orderRepository);
-    const orders = await getOrderByCpf.execute(request.params.cpf);
-    response.json(orders);
-
-});
-
-app.listen(3000);
+        ){
+        httpServer.on("post", "/preview", async function(params: any, body: any){
+            const total = await preview.execute(body);
+            return {total};        
+        });
+        
+        httpServer.on("post", "/checkout", async function(params: any, body: any){
+            await checkout.execute(body);        
+        });
+        
+        httpServer.on("get", "/orders/:cpf", async function(params: any, body: any){
+            const orders = await getOrderByCpf.execute(params.cpf);
+            return orders;        
+        });
+    }
+}
