@@ -1,10 +1,10 @@
 import express from "express";
-import Checkout from "./application/Checkout";
-import GetOrderByCpf from "./application/GetOrdersByCpf";
-import Preview from "./application/Preview";
-import Item from "./domain/Item";
-import ItemRepositoryMemory from "./ItemRepositoryMemory";
-import OrderRepositoryMemory from "./OrderRepositoryMemory";
+import Checkout from "../../application/Checkout";
+import GetOrderByCpf from "../../application/GetOrdersByCpf";
+import Preview from "../../application/Preview";
+import Item from "../../domain/entity/Item";
+import ItemRepositoryMemory from "../repository/memory/ItemRepositoryMemory";
+import OrderRepositoryMemory from "../repository/memory/OrderRepositoryMemory";
 const app = express();
 app.listen(express.json());
 
